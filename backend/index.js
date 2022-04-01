@@ -3,7 +3,7 @@ const express = require('express')
 
 connectToMongo();
 const app = express()
-const port = 3000
+const port = 5000
 
 // This is required to get response from the server and shoe req.body()
 app.use(express.json())
