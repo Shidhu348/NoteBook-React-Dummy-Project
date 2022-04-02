@@ -1,7 +1,6 @@
-import React from 'react'
 import Notes from './Notes';
 
-const Home = () => {
+export const Home = () => {
 
     return (
         <div>
@@ -9,5 +8,3 @@ const Home = () => {
         </div>
     )
 }
-
-export default Home
