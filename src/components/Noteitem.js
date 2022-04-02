@@ -6,7 +6,7 @@ const Noteitem = (props) => {
     const { deleteNote } = context;
 
 
-    const { note } = props;
+    const { note, updateNote } = props;
     return (
         <div className="col-md-3">
             <div className="card my-3">
@@ -15,7 +15,7 @@ const Noteitem = (props) => {
                     <p className="card-text">{note.description}</p>
                     <div className="d-flex justify-content-between">
                         <i className="fa-solid mx-2 fa-trash-can" onClick={() => { return deleteNote(note._id) }} ></i>
-                        <i className="fa-solid mx-2 fa-pen-to-square"></i>
+                        <i className="fa-solid mx-2 fa-pen-to-square" onClick={() => { updateNote(note) }} ></i>
                     </div>
                 </div>
             </div>
