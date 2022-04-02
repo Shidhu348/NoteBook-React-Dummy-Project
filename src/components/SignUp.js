@@ -17,7 +17,6 @@ const SignUp = (props) => {
             body: JSON.stringify({ name, email, password })
         });
         const json = await response.json();
-        console.log(json)
         if (json.success) {
             // Save the auth token and redirect
             localStorage.setItem('token', json.authToken);
@@ -36,16 +35,16 @@ const SignUp = (props) => {
 
 
     return (
-        <div className="container">
+        <div className="container my-5 mt-5">
+            <h2>Create an Accout to use Notebook App</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label htmlFor="name" className="form-label">Name</label>
+                    <label htmlFor="name" className="form-label mt-3">Name</label>
                     <input type="text" className="form-control" id="name" name="name" onChange={onChange} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="emil" className="form-label">Email address</label>
                     <input type="email" className="form-control" id="email" aria-describedby="emailHelp" name="email" onChange={onChange} />
-                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>

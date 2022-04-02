@@ -13,7 +13,7 @@ const NoteState = (props) => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0Njg4OGJmZTFiYjE0MjJhYmU4NThlIn0sImlhdCI6MTY0ODc5MDYwMX0.BxPRI-tEJ5phqRWu_S6xlxoOvb7TjILL54f41TDUsWc"
+                "auth-token": localStorage.getItem('token')
             }
         });
         const json = await response.json()
@@ -28,7 +28,7 @@ const NoteState = (props) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0Njg4OGJmZTFiYjE0MjJhYmU4NThlIn0sImlhdCI6MTY0ODc5MDYwMX0.BxPRI-tEJ5phqRWu_S6xlxoOvb7TjILL54f41TDUsWc"
+                "auth-token": localStorage.getItem('token')
             },
             body: JSON.stringify({ title, description, tag })
         });
@@ -40,14 +40,14 @@ const NoteState = (props) => {
     // Delete a Note
     const deleteNote = async (id) => {
         // API Call
-        const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+        await fetch(`${host}/api/notes/deletenote/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0Njg4OGJmZTFiYjE0MjJhYmU4NThlIn0sImlhdCI6MTY0ODc5MDYwMX0.BxPRI-tEJ5phqRWu_S6xlxoOvb7TjILL54f41TDUsWc"
+                "auth-token": localStorage.getItem('token')
             }
         });
-        const json = response.json();
+        // const json = response.json();
         const newNotes = notes.filter((note) => { return note._id !== id })
         setNotes(newNotes)
     }
@@ -55,15 +55,15 @@ const NoteState = (props) => {
     // Edit a Note
     const editNote = async (id, title, description, tag) => {
         // API Call 
-        const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
+        await fetch(`${host}/api/notes/updatenote/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0Njg4OGJmZTFiYjE0MjJhYmU4NThlIn0sImlhdCI6MTY0ODc5MDYwMX0.BxPRI-tEJ5phqRWu_S6xlxoOvb7TjILL54f41TDUsWc"
+                "auth-token": localStorage.getItem('token')
             },
             body: JSON.stringify({ title, description, tag })
         });
-        const json = await response.json();
+        // const json = await response.json();
 
         let newNotes = JSON.parse(JSON.stringify(notes))
         // Logic to edit in client
